@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Refine, AuthProvider } from "@pankod/refine-core";
+// mui
 import {
   notificationProvider,
   RefineSnackbarProvider,
@@ -10,13 +9,19 @@ import {
   ErrorComponent,
 } from "@pankod/refine-mui";
 
+// Dependancies
+import { Refine, AuthProvider } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { ColorModeContextProvider } from "contexts";
+
+// Pages
 import { Title, Sider, Layout, Header } from "components/layout";
 import { Login } from "pages/login";
+
+// Authentication
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 
@@ -91,6 +96,7 @@ function App() {
       <CssBaseline />
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
+        
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           notificationProvider={notificationProvider}
@@ -98,12 +104,8 @@ function App() {
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "posts",
+              name: "property",
               list: MuiInferencer,
-              edit: MuiInferencer,
-              show: MuiInferencer,
-              create: MuiInferencer,
-              canDelete: true,
             },
           ]}
           Title={Title}
